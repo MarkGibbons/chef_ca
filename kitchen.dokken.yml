@@ -21,3 +21,13 @@ platforms:
       intermediate_instructions:
         - RUN /usr/bin/apt-get update
         - RUN /usr/bin/apt-get install apt-transport-https lsb-release procps net-tools -y
+
+suites:
+  - name: default
+    run_list:
+      - recipe[tester::default]
+      - recipe[chef_ca::default]
+    verifier:
+      inspec_tests:
+        - test/default/inspec
+    attributes:
